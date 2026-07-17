@@ -1,0 +1,39 @@
+---
+- name: Despliegue automatizado de sitio web parametrizado
+  hosts: web
+  become: true  
+  vars_files:
+    - group_vars/web.yml 
+
+  tasks:
+    - name: 1. Asegurar que Nginx este instalado en el sistema
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: 2. Parametrizar el puerto de escucha en la configuracion de Nginx
+      ansible.builtin.template:
+        src: templates/default.j2
+        dest: /etc/nginx/sites-available/default
+        mode: '0644'
+      notify: restart nginx  # Si cambia el puerto, reinicia Nginx para aplicar
+
+    - name: 3. Renderizar y desplegar index.html personalizado
+      ansible.builtin.template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
+        mode: '0644'
+      notify: restart nginx  
+
+    - name: 4. Asegurar que Nginx este encendido y habilitado en el arranque
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: restart nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
