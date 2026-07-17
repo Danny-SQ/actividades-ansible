@@ -1,0 +1,22 @@
+---
+- name: Asegurar que el paquete UFW este instalado
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+  register: ufw_install
+  until: ufw_install is success
+  retries: 3
+  delay: 10
+
+- name: Permitir los puertos definidos en la lista
+  community.general.ufw:
+    rule: allow
+    port: "{{ item | string }}"
+    proto: tcp
+  loop: "{{ firewall_allowed_ports }}"
+
+- name: Habilitar el firewall UFW y aplicar la politica por defecto (Deny)
+  community.general.ufw:
+    state: enabled
+    policy: deny
+    direction: incoming

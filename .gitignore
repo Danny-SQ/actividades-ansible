@@ -11,6 +11,4 @@
 actividad-03/ansible.cfg
 actividad-03/hosts.ini
 actividad-03/site.yml
-actividad-03/roles/firewall/README.md
-actividad-03/roles/firewall/defaults/main.yml
-actividad-03/roles/firewall/tasks/main.yml
+
