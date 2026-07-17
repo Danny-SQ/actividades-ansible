@@ -1,0 +1,15 @@
+---
+# Configuración para el grupo de servidores web
+- name: Configurar e instalar Infraestructura Web Segura
+  hosts: web
+  become: yes
+  roles:
+    - webserver
+    - firewall
+
+# Configuración para servidores de bases de datos (Demostración de reutilización)
+- name: Asegurar perimetro de red en bases de datos
+  hosts: db
+  become: yes
+  roles:
+    - firewall
