@@ -1,0 +1,25 @@
+---
+- name: Diagnostico y preparacion base de servidores
+  hosts: all
+  become: yes  # Ejecutar como root 
+
+  tasks:
+    # 1. Tarea de diagnóstico: imprime información básica del sistema operativo destino
+    - name: Mostrar informacion del sistema operativo
+      ansible.builtin.debug:
+        msg: "Conectado a {{ ansible_hostname }} ejecutando {{ ansible_distribution }} {{ ansible_distribution_version }}"
+
+    # 2. Tarea de preparación: actualiza el repositorio de paquetes en Ubuntu server
+    - name: Actualizar la cache de APT si ha pasado mas de una hora
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    # 3. Tarea de instalación: asegura la existencia de curl, git y htop
+    - name: Asegurar la instalacion de herramientas esenciales (curl, git, htop)
+      ansible.builtin.apt:
+        name:
+          - curl
+          - git
+          - htop
+        state: present
