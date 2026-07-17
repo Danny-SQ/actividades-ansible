@@ -1,0 +1,5 @@
+---
+# Valores por defecto
+webserver_port: 8080
+web_site_title: "Sitio por defecto"
+web_welcome_message: "Bienvenido al servidor"

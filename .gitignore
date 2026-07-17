@@ -14,8 +14,3 @@ actividad-03/site.yml
 actividad-03/roles/firewall/README.md
 actividad-03/roles/firewall/defaults/main.yml
 actividad-03/roles/firewall/tasks/main.yml
-actividad-03/roles/webserver/README.md
-actividad-03/roles/webserver/defaults/main.yml
-actividad-03/roles/webserver/handlers/main.yml
-actividad-03/roles/webserver/tasks/main.yml
-actividad-03/roles/webserver/templates/index.html.j2

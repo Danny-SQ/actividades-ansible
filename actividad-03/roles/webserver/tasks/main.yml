@@ -1,0 +1,30 @@
+---
+- name: Validar sistema operativo antes de proceder
+  ansible.builtin.fail:
+    msg: "Este rol solo soporta sistemas basados en Debian/Ubuntu."
+  when: ansible_os_family != "Debian"
+
+- name: Asegurar que Nginx este instalado
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+    update_cache: yes
+  register: apt_result
+  until: apt_result is success
+  retries: 5
+  delay: 10
+
+- name: Generar la pagina index de bienvenida desde la plantilla Jinja2
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: www-data
+    group: www-data
+    mode: '0644'
+  notify: Reiniciar servicio nginx
+
+- name: Garantizar que Nginx este encendido y habilitado en el arranque
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+    enabled: yes
