@@ -1,0 +1,3 @@
+.vault_pass
+~/.ansible_vault_pass
+.ansible-vault-edit-*

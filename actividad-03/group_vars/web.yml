@@ -1,0 +1,15 @@
+---
+# Puerto que escuchará Nginx
+webserver_port: 80
+
+# Nombre de la página y título dinámico
+web_site_title: "Servidor Web del Grupo 3"
+web_welcome_message: "Servidor Web Aprovisionado Correctamente con Ansible Roles"
+
+# Puertos que abrirá el firewall para este grupo específico
+firewall_allowed_ports:
+  - 22  # SSH
+  - 80  # HTTP (Nginx)
+
+# Mapeo seguro: la variable pública toma el valor de la variable cifrada en el Vault
+db_app_password: "{{ db_password }}"
