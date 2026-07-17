@@ -1,0 +1,17 @@
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{{ site_name }}</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; color: #333;">
+  <div style="background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+    <h1 style="color: #4f46e5;">{{ site_name }}</h1>
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+    <p>Servidor asignado: <b>{{ ansible_hostname }}</b></p>
+    <p>Dirección IP de gestión: <b>{{ ansible_default_ipv4.address }}</b></p>
+    <p>Puerto de escucha: <b>{{ host_port }}</b></p>
+    <br>
+    <small style="color: #666;">Generado automáticamente con Ansible Jinja2 Templates</small>
+  </div>
+</body>
+</html>

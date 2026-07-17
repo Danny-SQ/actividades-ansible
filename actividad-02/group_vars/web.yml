@@ -1,0 +1,4 @@
+---
+# Variables aplicadas a todo el grupo [web]
+site_name: "Sitio Web Automatizado - Grupo 3"
+host_port: "80"
