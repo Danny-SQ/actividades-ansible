@@ -1,0 +1,2 @@
+1. El entorno utilizado (VirtualBox con 2 VMs en red Solo-Anfitrión en lugar de Proxmox).
+2. Configurar sudo sin contraseña en los servidores: para permitir que el scrip de diagnostico corra sin pida contraseñas constantemente, configure los usuarios en las VMs para que no requiera contraseña al usar sudo.
